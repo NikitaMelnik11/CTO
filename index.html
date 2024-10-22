@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zenith AutoLuxe - The Epitome of Automotive Excellence</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="images/x-icon"
+    href="https://cdn.icon-icons.com/icons2/196/PNG/128/car_23773.png">
+    <style>
+        :root {
+            --primary-color: #050505;
+            --secondary-color: #d4af37;
+            --accent-color: #b8860b;
+            --text-color: #333;
+            --background-color: #f9f9f9;
+            --card-bg-color: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1800px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        header {
+            background-color: rgba(5, 5, 5, 0.95);
+            color: white;
+            padding: 1.5rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            background-color: rgba(5, 5, 5, 0.98);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style-type: none;
+        }
+
+        nav ul li {
+            margin-left: 3.5rem;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 300;
+            transition: all 0.3s ease;
+            position: relative;
+            font-size: 1.2rem;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--secondary-color);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        #hero {
+            background-image: url('https://cdn.pixabay.com/photo/2019/03/03/21/44/cars-4032928_640.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3));
+        }
+
+        #hero .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1000px;
+        }
+
+        #hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 6rem;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease forwards 0.5s;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        #hero p {
+            font-size: 2rem;
+            margin-bottom: 2.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease forwards 1s;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            padding: 1.5rem 3rem;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease forwards 1.5s;
+            font-size: 1.2rem;
+        }
+
+        .btn:hover {
+            background-color: white;
+            color: var(--secondary-color);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        section {
+            padding: 12rem 0;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            text-align: center;
+            margin-bottom: 5rem;
+            color: var(--primary-color);
+            font-size: 4rem;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 200px;
+            height: 4px;
+            background-color: var(--secondary-color);
+            margin: 1.5rem auto 0;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 4rem;
+        }
+
+        .service-card {
+            background-color: var(--card-bg-color);
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            padding: 4rem 3rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, var(--secondary-color), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .service-card:hover::before {
+            opacity: 0.1;
+        }
+
+        .service-card:hover {
+            transform: translateY(-15px) scale(1.05);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        .service-card img {
+            width: 180px;
+            height: 180px;
+            margin-bottom: 2.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover img {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .service-card h3 {
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            font-size: 2.2rem;
+        }
+
+        .service-card p {
+            font-size: 1.2rem;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        #about {
+            background-color: var(--primary-color);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #about::before {
+            content: '';
+            position: absolute;
+            top: -150px;
+            left: 0;
+            right: 0;
+            height: 300px;
+            background-color: var(--background-color);
+            transform: skewY(-4deg);
+        }
+
+        #about .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        #about .about-content {
+            flex: 1;
+            padding-right: 5rem;
+        }
+
+        #about h2 {
+            color: var(--secondary-color);
+            text-align: left;
+        }
+
+        #about h2::after {
+            margin: 1.5rem 0 0;
+        }
+
+        #about p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        #about .about-image {
+            flex: 1;
+            text-align: right;
+        }
+
+        #about .about-image img {
+            max-width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        #about .about-image img:hover {
+            transform: scale(1.05);
+        }
+
+        #gallery {
+            background-color: var(--background-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.6));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover::after {
+            opacity: 1;
+        }
+
+        #testimonials {
+            background-color: var(--primary-color);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial-slider {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .testimonial {
+            padding: 3rem;
+        }
+
+        .testimonial p {
+            font-size: 1.5rem;
+            font-style: italic;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .testimonial-author {
+            font-weight: 700;
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+        }
+
+        #contact {
+            background-color: var(--background-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        #contact::before {
+            content: '';
+            position: absolute;
+            top: -150px;
+            left: 0;
+            right: 0;
+            height: 300px;
+            background-color: var(--primary-color);
+            transform: skewY(-4deg);
+        }
+
+        #contact form {
+            display: grid;
+            gap: 2.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 4rem;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+        }
+
+        #contact input,
+        #contact textarea {
+            width: 100%;
+            padding: 1.2rem;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        #contact input:focus,
+        #contact textarea:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+        }
+
+        #contact button {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            border: none;
+            padding: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 1.2rem;
+        }
+
+        #contact button:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 4rem 0;
+        }
+
+        .social-icons {
+            margin-top: 2.5rem;
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 1.8rem;
+            margin: 0 20px;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: var(--secondary-color);
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+
+            #hero h1 {
+                font-size: 4rem;
+            }
+
+            #hero p {
+                font-size: 1.5rem;
+            
+            }
+
+            #about .container {
+                flex-direction: column;
+            }
+
+            #about .about-content,
+            #about .about-image {
+                padding: 0;
+                margin-bottom: 3rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">Zenith AutoLuxe</div>
+            <ul>
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero">
+            <div class="hero-content">
+                <h1>Zenith AutoLuxe</h1>
+                <p>Elevating Automotive Excellence to Unprecedented Heights</p>
+                <a href="#services" class="btn">Discover Our Exclusive Experiences</a>
+            </div>
+        </section>
+
+        <section id="services" class="container">
+            <h2>Our Signature Experiences</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <img src="https://cdn.pixabay.com/photo/2016/11/18/22/31/architecture-1837176_640.jpg" alt="Precision Engineering">
+                    <h3>Precision Engineering</h3>
+                    <p>Elevate your vehicle's performance with our cutting-edge diagnostics and bespoke tuning services, tailored to unleash your automobile's full potential.</p>
+                </div>
+                <div class="service-card">
+                    <img src="https://cdn.pixabay.com/photo/2016/03/27/19/22/city-1283801_640.jpg" alt="Artisanal Detailing">
+                    <h3>Artisanal Detailing</h3>
+                    <p>Immerse your automobile in a transformative spa-like experience, where our master craftsmen restore and enhance its beauty to surpass showroom perfection.</p>
+                </div>
+                <div class="service-card">
+                    <img src="https://cdn.pixabay.com/photo/2014/04/27/00/43/traffic-332857_640.jpg" alt="Bespoke Modifications">
+                    <h3>Bespoke Modifications</h3>
+                    <p>Transform your vehicle into a unique masterpiece with our custom enhancements, meticulously crafted to reflect your individual style and preferences.</p>
+                </div>
+                <div class="service-card">
+                    <img src="https://cdn.pixabay.com/photo/2018/08/17/10/04/traffic-3612474_640.jpg" alt="Concierge Maintenance">
+                    <h3>Concierge Maintenance</h3>
+                    <p>Experience the pinnacle of worry-free ownership with our comprehensive, white-glove maintenance programs, ensuring your prized possession is always in peak condition.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="container">
+                <div class="about-content">
+                    <h2>The Zenith Experience</h2>
+                    <p>For over three decades, Zenith AutoLuxe has stood at the forefront of automotive excellence, redefining the boundaries of luxury vehicle care. Our state-of-the-art facility is not merely a service center; it is a sanctuary where the world's most discerning vehicles receive unparalleled care and attention.</p>
+                    <p>Our team of master technicians, each a virtuoso in their field, brings decades of specialized experience in handling the most prestigious marques. At Zenith AutoLuxe, we don't just maintain vehicles; we elevate them to their highest potential, ensuring each client experiences the pinnacle of automotive luxury.</p>
+                    <p>From our climate-controlled workshop equipped with cutting-edge diagnostic technology to our meticulous attention to detail, every aspect of Zenith AutoLuxe is designed to provide an experience that transcends service – it's a celebration of automotive passion and precision.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://cdn.pixabay.com/photo/2017/04/05/01/15/vintage-2203715_640.jpg" alt="Zenith AutoLuxe Facility">
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery" class="container">
+            <h2>Our Masterpieces</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://cdn.pixabay.com/photo/2020/09/06/07/37/car-5548242_640.jpg" alt="Luxury Car 1">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://cdn.pixabay.com/photo/2017/03/27/14/56/auto-2179220_640.jpg" alt="Luxury Car 2">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://cdn.pixabay.com/photo/2014/09/07/22/34/car-race-438467_640.jpg" alt="Luxury Car 3">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://cdn.pixabay.com/photo/2020/10/18/16/45/porsche-5665390_640.jpg" alt="Luxury Car 4">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://cdn.pixabay.com/photo/2020/12/01/18/06/porsche-911-gt2-5795128_640.jpg" alt="Luxury Car 5">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://cdn.pixabay.com/photo/2015/06/05/15/02/audi-798530_640.jpg" alt="Luxury Car 6">
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonials">
+            <div class="container">
+                <h2>Client Testimonials</h2>
+                <div class="testimonial-slider">
+                    <div class="testimonial">
+                        <p>"Zenith AutoLuxe has redefined what I expect from automotive care. Their attention to detail and commitment to excellence is unmatched. My vehicle has never performed better or looked more stunning."</p>
+                        <span class="testimonial-author">- James R., Porsche 911 GT3 Owner</span>
+                    </div>
+                    <!-- More testimonials would be added here and cycled through with JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="container">
+            <h2>Schedule Your Exclusive Consultation</h2>
+            <form id="contact-form">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <input type="tel" name="phone" placeholder="Your Phone Number" required>
+                <textarea name="message" placeholder="Tell us about your prized vehicle and your specific requirements" required rows="5"></textarea>
+                <button type="submit">Request Personalized Service</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Zenith AutoLuxe. All rights reserved.</p>
+            <div class="social-icons">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Parallax effect for hero section
+        window.addEventListener('scroll', () => {
+            const parallax = document.getElementById('hero');
+            let scrollPosition = window.pageYOffset;
+            parallax.style.backgroundPositionY = scrollPosition * 0.7 + 'px';
+        });
+
+        // Form submission with animation
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            this.classList.add('submitted');
+            setTimeout(() => {
+                alert('Thank you for your inquiry. Our concierge team will contact you shortly to arrange your personalized consultation.');
+                this.reset();
+                this.classList.remove('submitted');
+            }, 1000);
+        });
+
+        // Intersection Observer for fade-in effect
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.service-card, #about .about-content, #about .about-image, .gallery-item').forEach(el => {
+            el.classList.add('fade-out');
+            observer.observe(el);
+        });
+
+        // Simple testimonial slider
+        let currentTestimonial = 0;
+        const testimonials = [
+            {
+                text: "Zenith AutoLuxe has redefined what I expect from automotive care. Their attention to detail and commitment to excellence is unmatched. My vehicle has never performed better or looked more stunning.",
+                author: "James R., Porsche 911 GT3 Owner"
+            },
+            {
+                text: "The level of expertise and passion at Zenith AutoLuxe is extraordinary. They treat each vehicle as if it were their own masterpiece. The results are nothing short of spectacular.",
+                author: "Sophia L., Ferrari 488 Pista Owner"
+            },
+            {
+                text: "I wouldn't trust my vintage collection to anyone else. Zenith AutoLuxe's knowledge and craftsmanship are truly in a league of their own. They've breathed new life into my classics.",
+                author: "Robert M., Classic Car Collector"
+            }
+        ];
+
+        function updateTestimonial() {
+            const testimonialElement = document.querySelector('.testimonial');
+            testimonialElement.style.opacity = 0;
+            setTimeout(() => {
+                testimonialElement.innerHTML = `
+                    <p>"${testimonials[currentTestimonial].text}"</p>
+                    <span class="testimonial-author">- ${testimonials[currentTestimonial].author}</span>
+                `;
+                testimonialElement.style.opacity = 1;
+            }, 500);
+            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+        }
+
+        setInterval(updateTestimonial, 8000);
+    </script>
+</body>
+</html>
